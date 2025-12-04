@@ -3,6 +3,7 @@
 import asyncio
 import json
 import logging
+import re
 import subprocess
 from typing import Any, Dict, List, Optional
 
@@ -96,3 +97,47 @@ def find_tool_server(tool_name: str, servers: Dict[str, List[str]]) -> Optional[
         if tool_name in tools:
             return server
     return None
+
+
+def escape_url_for_xml(url: str) -> str:
+    """
+    Escape URL for safe use in XML documents (VAST, etc.).
+
+    This function escapes ampersand characters (&) in URLs to &amp; to prevent
+    XML parser errors. It correctly handles URLs that may already contain
+    some escaped entities.
+
+    Args:
+        url: URL string that may contain unescaped ampersands
+
+    Returns:
+        URL with ampersands properly escaped for XML
+
+    Examples:
+        >>> escape_url_for_xml("https://example.com?param1=value1&param2=value2")
+        'https://example.com?param1=value1&amp;param2=value2'
+
+        >>> escape_url_for_xml("https://example.com?c=25&pli=123")
+        'https://example.com?c=25&amp;pli=123'
+
+        >>> escape_url_for_xml("https://example.com?&mh_camp=123")
+        'https://example.com?&amp;mh_camp=123'
+    """
+    if not url:
+        return url
+
+    # Pattern to match ampersands that are NOT part of XML entity references
+    # XML entities: &amp; &lt; &gt; &quot; &apos; &#123; &#x1F;
+    # This regex matches & that is NOT followed by:
+    # - amp; (for &amp;)
+    # - lt; (for &lt;)
+    # - gt; (for &gt;)
+    # - quot; (for &quot;)
+    # - apos; (for &apos;)
+    # - # followed by digits or x+hex (for numeric entities)
+    entity_pattern = r"&(?!(?:amp|lt|gt|quot|apos);|#(?:\d+|x[0-9a-fA-F]+);)"
+
+    # Replace unescaped ampersands with &amp;
+    escaped_url = re.sub(entity_pattern, "&amp;", url)
+
+    return escaped_url

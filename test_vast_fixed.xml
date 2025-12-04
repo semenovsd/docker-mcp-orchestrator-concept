@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:noNamespaceSchemaLocation="http://specs.adfox.ru/uploads/vast.xsd">
+    <Ad id="01958ad3-a77e-74cb-960a-c3d4979157db">
+    <InLine>
+    <AdSystem>Rollover</AdSystem>
+    <AdTitle>Linear Video Ad</AdTitle>
+    <Description>Video Ad</Description>
+    <Error><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/error.gif?code=[ERRORCODE]]]></Error>
+    <Impression id="Teletarget"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/impression.gif]]></Impression>
+    <Impression id="AdServing"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=display&c=25&pli=1087731545&adid=1087731546&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Impression>
+    <Creatives>
+        <Creative id="01958a71-8234-7171-995d-0a8ebd2d137e">
+    <Linear skipoffset="00:00:15">
+        <Duration>00:00:15</Duration>
+        <TrackingEvents>
+             <Tracking event="creativeView"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/creativeView.gif]]></Tracking>
+             <Tracking event="start"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/start.gif]]></Tracking>
+             <Tracking event="firstQuartile"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/firstQuartile.gif]]></Tracking>
+             <Tracking event="midpoint"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/midpoint.gif]]></Tracking>
+             <Tracking event="thirdQuartile"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/thirdQuartile.gif]]></Tracking>
+             <Tracking event="complete"><![CDATA[https://adtv-service-dev.teletarget.ru/api/v1/event/2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe/complete.gif]]></Tracking>
+             <Tracking event="start"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=isi&iv=2&interactionsStr=1087731546%7E%7E%7E0%7E%7E%7E%5EebVideoStarted%7E0%7E0%7E01010&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Tracking>
+             <Tracking event="firstQuartile"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=isi&iv=2&interactionsStr=1087731546%7E%7E%7E0%7E%7E%7E%5Eeb25Per_Played%7E0%7E0%7E01010&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Tracking>
+             <Tracking event="midpoint"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=isi&iv=2&interactionsStr=1087731546%7E%7E%7E0%7E%7E%7E%5Eeb50Per_Played%7E0%7E0%7E01010&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Tracking>
+             <Tracking event="thirdQuartile"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=isi&iv=2&interactionsStr=1087731546%7E%7E%7E0%7E%7E%7E%5Eeb75Per_Played%7E0%7E0%7E01010&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Tracking>
+             <Tracking event="complete"><![CDATA[https://bs.serving-sys.ru/Serving/adServer.bs?cn=isi&iv=2&interactionsStr=1087731546%7E%7E%7E0%7E%7E%7E%5EebVideoFullPlay%7E0%7E0%7E01010&ord=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&psid=2512041146019ae88a-ff5f-78dd-9c31-4c396b788bfe]]></Tracking>
+             <Tracking event="start"><![CDATA[https://px385.mhverifier.ru/s.gif?&mh_camp=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&event=start]]></Tracking>
+             <Tracking event="firstQuartile"><![CDATA[https://px385.mhverifier.ru/s.gif?&mh_camp=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&event=firstQuartile]]></Tracking>
+             <Tracking event="midpoint"><![CDATA[https://px385.mhverifier.ru/s.gif?&mh_camp=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&event=midpoint]]></Tracking>
+             <Tracking event="thirdQuartile"><![CDATA[https://px385.mhverifier.ru/s.gif?&mh_camp=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&event=thirdQuartile]]></Tracking>
+             <Tracking event="complete"><![CDATA[https://px385.mhverifier.ru/s.gif?&mh_camp=01924353-367a-71c4-b2a8-b43c9bb85e8f&puid=12e1112ee&event=complete]]></Tracking>
+        </TrackingEvents>
+        <!-- VideoClicks удален, так как нет URL для клика -->
+        <MediaFiles>
+            <MediaFile id="01970c8d-0633-77d7-9176-d895f2439ff9" delivery="progressive" type="video/mp4" bitrate="1200" width="854" height="480" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0633-77d7-9176-d895f2439ff9/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.mp4]]></MediaFile>
+        <MediaFile id="01970c8d-0623-7c82-9098-04a227c796d0" delivery="progressive" type="video/mp4" bitrate="4000" width="1920" height="1080" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0623-7c82-9098-04a227c796d0/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.mp4]]></MediaFile>
+        <MediaFile id="01970c8d-0647-7061-ba3d-be89be0476e7" delivery="progressive" type="video/webm" bitrate="1200" width="854" height="480" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0647-7061-ba3d-be89be0476e7/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.webm]]></MediaFile>
+        <MediaFile id="01970c8d-0628-73b9-9776-a3458b88b243" delivery="progressive" type="video/mp4" bitrate="2000" width="1280" height="720" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0628-73b9-9776-a3458b88b243/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.mp4]]></MediaFile>
+        <MediaFile id="01970c8d-0637-7b12-9a40-1ae6f147e85d" delivery="progressive" type="video/mp4" bitrate="700" width="640" height="360" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0637-7b12-9a40-1ae6f147e85d/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.mp4]]></MediaFile>
+        <MediaFile id="01970c8d-0643-729e-ad91-fda091c20f37" delivery="progressive" type="video/webm" bitrate="2000" width="1280" height="720" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0643-729e-ad91-fda091c20f37/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.webm]]></MediaFile>
+        <MediaFile id="01970c8d-0653-76de-9433-71b237fb80dc" delivery="progressive" type="video/webm" bitrate="700" width="640" height="360" scalable="true" maintainAspectRatio="true"><![CDATA[https://adtv-api-dev.teletarget.ru/media/creatives/01958a71-8234-7171-995d-0a8ebd2d137e/media_files/01970c8d-0653-76de-9433-71b237fb80dc/%D0%9F%D0%B8%D1%82%D0%B5%D1%80_%D1%82%D1%8E%D0%BB%D1%8C%D0%BF%D0%B0%D0%BD.webm]]></MediaFile>
+        </MediaFiles>
+    </Linear>
+</Creative>
+    </Creatives>
+    <Extensions>
+        <Extension type="startTime">00:00</Extension>
+            <Extension type="skipTime">00:15</Extension>
+            <Extension type="skipTime2">00:15</Extension>
+            <Extension type="linkTxt">перейти на сайт рекламодателя</Extension>
+            <Extension type="isClickable">0</Extension>
+            <Extension type="AdTitle">
+                <![CDATA[
+                    {
+                        "show": 0,
+                        "domain": "",
+                        "socialAdvertising": 0
+                    }
+                ]]>
+            </Extension>
+            <Extension type="AdTune">
+                <![CDATA[
+                    {
+                        "show": 0, 
+                        "token": "34кауепа", 
+                        "advertiserInfo": "23ка22"
+                    }
+                ]]>
+            </Extension>
+    </Extensions>
+    </InLine>
+</Ad>
+</VAST>

@@ -1,98 +1,108 @@
-"""Utility functions for Orchestrator."""
+"""Utility functions for VAST document processing."""
 
-import asyncio
-import json
-import logging
-import subprocess
-from typing import Any, Dict, List, Optional
-
-logger = logging.getLogger(__name__)
+import re
+from typing import Optional
+from xml.sax.saxutils import escape
 
 
-async def run_command(
-    cmd: List[str], timeout: int = 30, retries: int = 3, delay: int = 1
-) -> tuple[str, int]:
+def escape_xml_url(url: str) -> str:
     """
-    Run a command asynchronously with retry logic.
-
+    Escape special XML characters in URL for safe inclusion in VAST document.
+    
+    This function properly escapes XML special characters, especially '&' which
+    must be escaped as '&amp;' to avoid XML parser errors like:
+    "The reference to entity 'c' must end with the ';' delimiter."
+    
     Args:
-        cmd: Command to run
-        timeout: Command timeout in seconds
-        retries: Number of retry attempts
-        delay: Delay between retries in seconds
-
+        url: URL string that may contain unescaped XML characters
+        
     Returns:
-        Tuple of (stdout, return_code)
+        URL with properly escaped XML characters
+        
+    Examples:
+        >>> escape_xml_url("https://example.com?param1=value1&param2=value2")
+        'https://example.com?param1=value1&amp;param2=value2'
+        
+        >>> escape_xml_url("https://example.com?query=test&id=123")
+        'https://example.com?query=test&amp;id=123'
     """
-    for attempt in range(retries):
-        try:
-            process = await asyncio.create_subprocess_exec(
-                *cmd,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE,
-            )
-            stdout, stderr = await asyncio.wait_for(
-                process.communicate(), timeout=timeout
-            )
-
-            if process.returncode == 0:
-                return stdout.decode("utf-8"), 0
-            else:
-                error_msg = stderr.decode("utf-8") if stderr else "Unknown error"
-                logger.warning(
-                    f"Command failed (attempt {attempt + 1}/{retries}): {error_msg}"
-                )
-                if attempt < retries - 1:
-                    await asyncio.sleep(delay * (2 ** attempt))  # Exponential backoff
-                else:
-                    return error_msg, process.returncode
-
-        except asyncio.TimeoutError:
-            logger.warning(f"Command timeout (attempt {attempt + 1}/{retries})")
-            if attempt < retries - 1:
-                await asyncio.sleep(delay * (2 ** attempt))
-            else:
-                return "Command timeout", -1
-
-        except Exception as e:
-            logger.error(f"Error running command: {e}")
-            if attempt < retries - 1:
-                await asyncio.sleep(delay * (2 ** attempt))
-            else:
-                return str(e), -1
-
-    return "Max retries exceeded", -1
+    if not url:
+        return url
+    
+    # Escape XML special characters: &, <, >
+    # xml.sax.saxutils.escape() escapes &, <, > by default
+    # Don't pass entities dict - escape() handles &, <, > automatically
+    escaped = escape(url)
+    
+    return escaped
 
 
-def parse_json_output(output: str) -> Optional[Dict[str, Any]]:
+def escape_xml_url_advanced(url: str, escape_quotes: bool = False) -> str:
     """
-    Parse JSON output from command.
-
+    Advanced URL escaping with optional quote escaping.
+    
+    Use this if URLs are placed in XML attributes that use quotes.
+    
     Args:
-        output: JSON string output
-
+        url: URL string to escape
+        escape_quotes: If True, also escape single and double quotes
+        
     Returns:
-        Parsed JSON dictionary or None if parsing fails
+        Properly escaped URL
+        
+    Examples:
+        >>> escape_xml_url_advanced("https://example.com?q=test&id=1")
+        'https://example.com?q=test&amp;id=1'
+        
+        >>> escape_xml_url_advanced("https://example.com?q='test'", escape_quotes=True)
+        "https://example.com?q=&apos;test&apos;"
     """
-    try:
-        return json.loads(output)
-    except json.JSONDecodeError as e:
-        logger.error(f"Failed to parse JSON: {e}")
+    if not url:
+        return url
+    
+    # escape() handles &, <, > by default
+    # Only add quote escaping if needed
+    entities = {}
+    
+    if escape_quotes:
+        entities["'"] = '&apos;'
+        entities['"'] = '&quot;'
+    
+    if entities:
+        return escape(url, entities=entities)
+    else:
+        return escape(url)
+
+
+def escape_vast_url(url: str) -> str:
+    """
+    Escape URL specifically for VAST document text content.
+    
+    This is an alias for escape_xml_url() with a more descriptive name
+    for VAST-specific use cases.
+    
+    Args:
+        url: URL to escape for VAST document
+        
+    Returns:
+        Escaped URL safe for VAST XML
+    """
+    return escape_xml_url(url)
+
+
+def validate_and_escape_vast_url(url: Optional[str]) -> Optional[str]:
+    """
+    Validate URL and escape it for VAST document.
+    
+    Returns None if URL is empty/None, otherwise returns escaped URL.
+    
+    Args:
+        url: URL string or None
+        
+    Returns:
+        Escaped URL or None if input was empty/None
+    """
+    if not url or not url.strip():
         return None
-
-
-def find_tool_server(tool_name: str, servers: Dict[str, List[str]]) -> Optional[str]:
-    """
-    Find which server provides a specific tool.
-
-    Args:
-        tool_name: Name of the tool
-        servers: Dictionary mapping server names to their tool names
-
-    Returns:
-        Server name that provides the tool, or None if not found
-    """
-    for server, tools in servers.items():
-        if tool_name in tools:
-            return server
-    return None
+    
+    return escape_vast_url(url.strip())
